@@ -18,6 +18,7 @@
   <modules>
     <module>flume</module>
     <module>canal</module>
+    <module>npe</module>
   </modules>
 
   <dependencyManagement>
