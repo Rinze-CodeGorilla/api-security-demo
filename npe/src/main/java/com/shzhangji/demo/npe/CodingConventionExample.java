@@ -18,7 +18,7 @@ public class CodingConventionExample {
   }
 
   public void testUtils(String str, Collection<?> col) {
-    org.springframework.util.StringUtils.isEmpty(str);
+    org.springframework.util.StringUtils.hasLength(str);
     org.springframework.util.CollectionUtils.isEmpty(col);
 
     com.google.common.base.Strings.isNullOrEmpty(str);

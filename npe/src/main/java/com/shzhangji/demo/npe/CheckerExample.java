@@ -4,9 +4,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.util.StringUtils;
 
 public class CheckerExample {
-
-  @Nullable
-  private Object returnNullable() {
+  private @Nullable Object returnNullable() {
     return null;
   }
 
