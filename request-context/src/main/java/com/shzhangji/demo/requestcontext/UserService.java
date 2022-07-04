@@ -1,7 +1,5 @@
 package com.shzhangji.demo.requestcontext;
 
-import java.util.Objects;
-import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +13,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 public class UserService {
   private final HttpServletRequest request;
   private final CustomContext context;
+  private final CustomContextHolder holder;
 
   public User getFromRequest() {
     var user = (User) request.getAttribute("user");
@@ -28,7 +27,7 @@ public class UserService {
   }
 
   public User getFromCustomContextHolder() {
-    var user = CustomContextHolder.get().getUser();
+    var user = holder.get().getUser();
     log.info("Get from CustomContextHolder: {}", user);
     return user;
   }

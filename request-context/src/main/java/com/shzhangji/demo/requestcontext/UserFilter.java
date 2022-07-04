@@ -15,6 +15,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @RequiredArgsConstructor
 public class UserFilter extends OncePerRequestFilter {
   private final CustomContext context;
+  private final CustomContextHolder holder;
 
   @Override
   protected void doFilterInternal(
@@ -25,14 +26,14 @@ public class UserFilter extends OncePerRequestFilter {
     request.setAttribute("user", user);
     context.setUser(user);
 
-    var threadLoadContext = new CustomContext();
-    threadLoadContext.setUser(user);
-    CustomContextHolder.set(threadLoadContext);
+    var threadLocalContext = new CustomContext();
+    threadLocalContext.setUser(user);
+    holder.set(threadLocalContext);
 
     try {
       filterChain.doFilter(request, response);
     } finally {
-      CustomContextHolder.remove();
+      holder.remove();
       log.info("Remove custom context from thread local.");
     }
   }

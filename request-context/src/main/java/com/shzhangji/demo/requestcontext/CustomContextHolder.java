@@ -1,17 +1,20 @@
 package com.shzhangji.demo.requestcontext;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CustomContextHolder {
   private static final ThreadLocal<CustomContext> holder = new ThreadLocal<>();
 
-  public static void set(CustomContext context) {
+  public void set(CustomContext context) {
     holder.set(context);
   }
 
-  public static CustomContext get() {
+  public CustomContext get() {
     return holder.get();
   }
 
-  public static void remove() {
+  public void remove() {
     holder.remove();
   }
 }
