@@ -14,3 +14,6 @@ indent_size = 4
 
 [*.java]
 ij_continuation_indent_size = 4
+
+[*.sql]
+indent_size = 4
