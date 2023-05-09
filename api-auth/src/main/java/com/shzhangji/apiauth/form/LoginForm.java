@@ -1,6 +1,6 @@
 package com.shzhangji.apiauth.form;
 
-import jakarta.validation.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data

@@ -24,9 +24,9 @@ public class DemoApplication {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     var chain = http
         .authorizeHttpRequests(customizer -> customizer
-            .requestMatchers("/api/csrf").permitAll()
-            .requestMatchers("/api/login").permitAll()
-            .requestMatchers("/api/**").authenticated()
+            .antMatchers("/api/csrf").permitAll()
+            .antMatchers("/api/login").permitAll()
+            .antMatchers("/api/**").authenticated()
             .anyRequest().denyAll())
         .exceptionHandling(customizer -> customizer
             .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))

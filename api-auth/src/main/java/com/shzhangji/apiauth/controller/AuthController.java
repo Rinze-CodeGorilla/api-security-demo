@@ -3,12 +3,14 @@ package com.shzhangji.apiauth.controller;
 import com.shzhangji.apiauth.AppException;
 import com.shzhangji.apiauth.entity.User;
 import com.shzhangji.apiauth.form.LoginForm;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.Valid;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import lombok.Data;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -27,6 +29,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @DependsOn("securityFilterChain")
 public class AuthController {
+  @Data
+  @AllArgsConstructor
+  public class CurrentUser{
+    Integer id;
+    String nickname;
+  }
+  @Data
+  public class LogoutResponse{}
+  @Data
+  @AllArgsConstructor
+  public class CsrfResponse{String token;}
   private final RememberMeServices rememberMeServices;
 
   @PostMapping("/login")
@@ -72,7 +85,4 @@ public class AuthController {
     return new CsrfResponse(csrf.getToken());
   }
 
-  public record CurrentUser(Integer id, String nickname) {}
-  public record LogoutResponse() {}
-  public record CsrfResponse(String token) {}
 }
